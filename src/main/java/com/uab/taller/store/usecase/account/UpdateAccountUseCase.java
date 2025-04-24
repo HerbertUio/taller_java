@@ -3,6 +3,7 @@ package com.uab.taller.store.usecase.account;
 import com.uab.taller.store.domain.Account;
 import com.uab.taller.store.domain.dto.request.UpdateAccountRequest;
 import com.uab.taller.store.service.IAccountService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UpdateAccountUseCase {
     @Autowired
     IAccountService accountService;
+    @Transactional
     public Account execute(Long id, UpdateAccountRequest updateAccountRequest) {
         Account accountToUpdate = accountService.getById(id);
         accountToUpdate.setNumber(accountToUpdate.getNumber());

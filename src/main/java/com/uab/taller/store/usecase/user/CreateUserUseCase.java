@@ -8,6 +8,7 @@ import com.uab.taller.store.domain.dto.request.UserRequest;
 import com.uab.taller.store.service.IAccountService;
 import com.uab.taller.store.service.IProfileService;
 import com.uab.taller.store.service.IUserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,7 @@ public class CreateUserUseCase {
     IProfileService profileService;
     @Autowired
     IAccountService accountService;
-
-
+    @Transactional
     public User execute(CreateUserRequest createUserRequest) {
 
         Profile profile = new Profile();
@@ -38,15 +38,15 @@ public class CreateUserUseCase {
         User user = new User();
         user.setPassword(createUserRequest.getPassword());
         user.setEmail(createUserRequest.getEmail());
+        user.setProfile(profile);
 
         Account account = new Account();
-        account.setNumber(account.getNumber());
         account.setCurrencyType(createUserRequest.getCurrencyType());
         account.setBalance(createUserRequest.getBalance());
+        account.setUser(user);
+        user = userService.save(user);
         account = accountService.save(account);
-
-        user.setProfile(profile);
   
-        return  userService.save(user);
+        return  user;
     }
 }

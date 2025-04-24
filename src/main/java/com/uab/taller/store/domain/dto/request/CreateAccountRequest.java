@@ -6,10 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateAccountRequest {
-    public int number;
     public String currencyType;
     public float balance;
-
-
+    public Long userId;
 }
 

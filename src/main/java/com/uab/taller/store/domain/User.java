@@ -1,5 +1,6 @@
 package com.uab.taller.store.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +17,10 @@ public class User {
     String email;
     String password;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne()
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     Profile profile;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    @JsonManagedReference
     List<Account> account;
 }

@@ -1,5 +1,6 @@
 package com.uab.taller.store.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +15,9 @@ public class Account {
     int number = generateAccountNumber();
     String currencyType;
     float balance;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     User user;
 
     public int generateAccountNumber() {

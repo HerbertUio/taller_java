@@ -28,7 +28,7 @@ public class AccountController {
         return getAllAccountUseCase.execute();
     }
     @GetMapping(value = "/{accountId}")
-    public Account getById (Long accountId) {
+    public Account getById (@PathVariable Long accountId) {
         return getAccountByIdUseCase.execute(accountId);
     }
     @PostMapping(value = "")
