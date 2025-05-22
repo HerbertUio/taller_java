@@ -6,11 +6,12 @@ import com.uab.taller.store.domain.dto.request.CreateUserRequest;
 import com.uab.taller.store.domain.dto.request.UserRequest;
 import com.uab.taller.store.service.IUserService;
 import com.uab.taller.store.usecase.user.*;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/users")
 public class  UserController {
@@ -28,7 +29,7 @@ public class  UserController {
     DeleteUserUseCase deleteUserUseCase;
     @Autowired
     UpdateUserUseCase updateUserUseCase;
-
+    @Operation(summary = "OBTIENE NUESTROS CLIENTES VIP")
     @GetMapping()
     public List<User> getAll() {
         return getAllUsersUseCase.execute();
