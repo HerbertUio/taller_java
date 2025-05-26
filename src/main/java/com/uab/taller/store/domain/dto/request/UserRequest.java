@@ -10,7 +10,4 @@ public class UserRequest {
     String lastName;
     String email;
     String password;
-
-
-
 }

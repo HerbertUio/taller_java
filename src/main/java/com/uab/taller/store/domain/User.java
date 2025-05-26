@@ -17,10 +17,10 @@ public class User {
     String email;
     String password;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     Profile profile;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     List<Account> account;
 }
